@@ -4,11 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ResourceBundle;
+
 
 public class Hola extends HttpServlet {
-    private String message;
-    private int m;
+
 
     @Override
     public void init() throws ServletException {
