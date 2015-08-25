@@ -1,0 +1,10 @@
+<web-app>
+    <servlet>
+        <servlet-name>Hola</servlet-name>
+        <servlet-class>Hola</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Hola</servlet-name>
+        <url-pattern>/queTal</url-pattern>
+    </servlet-mapping>
+</web-app>
