@@ -12,18 +12,17 @@ public class Hola extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        message = "hola come estan?";
-        m=2;
+
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;Charset=UTF-8");
         PrintWriter printWriter = response.getWriter();
-       // ResourceBundle resourceBundle = ResourceBundle.getBundle("LocalString", request.getLocale());
-        printWriter.println("<h1>" + message + "</h1>");
-        printWriter.println("<p>" + m + "</p>");
-
+        printWriter.println("<head>");
+        printWriter.println("<title> hola</title></head>");
+        printWriter.println("<body>");
+        printWriter.println("<h1>hola come estan</h1></body>");
 
     }
 }
