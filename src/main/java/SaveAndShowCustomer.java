@@ -22,4 +22,7 @@ public class SaveAndShowCustomer extends HttpServlet {
 
 
     }
+    public void showHtmlResultCustomerLegal( LegalCustomer result){
+
+    }
 }

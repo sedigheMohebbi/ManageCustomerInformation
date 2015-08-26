@@ -1,14 +1,34 @@
 <web-app>
     <servlet>
 
-        <servlet-name>ReadParametr</servlet-name>
-        <servlet-class>ReadParametr</servlet-class>
+        <servlet-name>ParameterReader</servlet-name>
+        <servlet-class>ParameterReader</servlet-class>
+    </servlet>
+    <servlet>
+
+        <servlet-name>SaveAndShowCustomer</servlet-name>
+        <servlet-class>SaveAndShowCustomer</servlet-class>
+    </servlet>
+    <servlet>
+
+        <servlet-name>CustomerTypeSelector</servlet-name>
+        <servlet-class>CustomerTypeSelector</servlet-class>
     </servlet>
     <servlet-mapping>
 
-        <servlet-name>ReadParametr</servlet-name>
-        <url-pattern>/ReadParametr</url-pattern>
+        <servlet-name>ParameterReader</servlet-name>
+        <url-pattern>/ParameterReader</url-pattern>
 
+    </servlet-mapping>
+    <servlet-mapping>
+
+        <servlet-name>CustomerTypeSelector</servlet-name>
+        <url-pattern>/CustomerTypeSelector</url-pattern>
+
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveAndShowCustomer</servlet-name>
+        <url-pattern>/SaveAndShowCustomer</url-pattern>
     </servlet-mapping>
 </web-app>
 
