@@ -5,13 +5,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class CustomerTypeSelector extends HttpServlet {
+public class AddCustomer extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         String customerType = request.getParameter("customerType");
-        Boolean submited = Boolean.parseBoolean(request.getParameter("submited"));
-        if (submited) {
+
+
             if (customerType == null) {
                 out.println("<p> select customer Type</p>");
             } else if (customerType.equals("real")) {
@@ -21,7 +21,7 @@ public class CustomerTypeSelector extends HttpServlet {
             } else {
                 response.sendRedirect("http://localhost:9090/ParameterReader?submited=true");
             }
-        }
+
     }
 
     private void legalCustomerPage(HttpServletRequest request, PrintWriter out) {
@@ -45,7 +45,8 @@ public class CustomerTypeSelector extends HttpServlet {
                 "                <input type=\"text\" name=\"registrationDate\" value=\"\" id=\"registrationDate\"/>\n" +
                 "                <label for=\"economicCode\"> economic Code : </label>\n" +
                 "                <input type=\"text\" name=\"economicCode\" value=\"\" id=\"economicCode\"/>\n" +
-                "            </fieldset>\n" +
+                "                <input type=\"hidden\" name=\"customerType\" value=\"legal\"/>"+
+        "            </fieldset>\n" +
                 "            <input type=\"submit\" value=\"save\"/>\n" +
                 "        </form>\n" +
                 "    </div>\n" +
@@ -79,6 +80,7 @@ public class CustomerTypeSelector extends HttpServlet {
                 "                <input type=\"text\" name=\"birthDay\" value=\"\" id=\"birthDay\"/>\n" +
                 "                <label for=\"nationalCode\"> National Code : </label>\n" +
                 "                <input type=\"text\" name=\"nationalCode\" value=\"\" id=\"nationalCode\"/>\n" +
+                "                <input type=\"hidden\" name=\"customerType\" value=\"real\"/>"+
                 "            </fieldset>\n" +
                 "            <input type=\"submit\" value=\"save\"/>\n" +
                 "        </form>\n" +

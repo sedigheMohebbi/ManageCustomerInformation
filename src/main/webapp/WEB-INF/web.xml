@@ -6,14 +6,25 @@
     </servlet>
     <servlet>
 
+        <servlet-name>SearchCustomer</servlet-name>
+        <servlet-class>SearchCustomer</servlet-class>
+    </servlet>
+    <servlet>
+
         <servlet-name>SaveAndShowCustomer</servlet-name>
         <servlet-class>SaveAndShowCustomer</servlet-class>
     </servlet>
     <servlet>
 
-        <servlet-name>CustomerTypeSelector</servlet-name>
-        <servlet-class>CustomerTypeSelector</servlet-class>
+        <servlet-name>AddCustomer</servlet-name>
+        <servlet-class>AddCustomer</servlet-class>
     </servlet>
+    <servlet>
+
+        <servlet-name>Manage</servlet-name>
+        <servlet-class>ManageCustomer</servlet-class>
+    </servlet>
+
     <servlet-mapping>
 
         <servlet-name>ParameterReader</servlet-name>
@@ -22,13 +33,25 @@
     </servlet-mapping>
     <servlet-mapping>
 
-        <servlet-name>CustomerTypeSelector</servlet-name>
-        <url-pattern>/CustomerTypeSelector</url-pattern>
+        <servlet-name>AddCustomer</servlet-name>
+        <url-pattern>/AddCustomer</url-pattern>
 
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SaveAndShowCustomer</servlet-name>
         <url-pattern>/SaveAndShowCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+
+        <servlet-name>Manage</servlet-name>
+        <url-pattern>/ManageCustomer</url-pattern>
+
+    </servlet-mapping>
+    <servlet-mapping>
+
+        <servlet-name>SearchCustomer</servlet-name>
+        <url-pattern>/SearchCustomer</url-pattern>
+
     </servlet-mapping>
 </web-app>
 

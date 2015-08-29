@@ -1,8 +1,8 @@
 
-public class LegalCustomer {
+public class LegalCustomer extends Customer {
     private String companyName;
     private String customerNumber;
-    private String date;
+    private String registrationDate;
     private String economicCode;
 
 
@@ -22,12 +22,12 @@ public class LegalCustomer {
         this.customerNumber = customerNumber;
     }
 
-    public String getDate() {
-        return date;
+    public String getRegistrationDate() {
+        return registrationDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setRegistrationDate(String registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     public String getEconomicCode() {

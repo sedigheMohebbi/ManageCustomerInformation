@@ -32,7 +32,7 @@ public class ParameterReader extends HttpServlet {
             }
         }
         out.println(
-                "        <form method=\"get\" action=\"http://localhost:9090/CustomerTypeSelector\">\n" +
+                " <form method=\"get\" action=\"http://localhost:9090/ManageCustomer\">\n" +
                         "            <fieldset>\n" +
                         "                <input type=\"radio\" name=\"customerType\" value=\"real\" id=\"realCustomerType\" checked/>\n" +
                         "                <label for=\"realCustomerType\">Real Customer</label>\n" +
@@ -48,5 +48,5 @@ public class ParameterReader extends HttpServlet {
                 "</body>\n" +
                 "</html>");
     }
-    }
+}
 
