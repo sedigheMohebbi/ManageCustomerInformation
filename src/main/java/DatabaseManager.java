@@ -35,7 +35,7 @@ public class DatabaseManager {
             preparedStatement2.setString(2, legalCustomer.getRegistrationDate());
             preparedStatement2.setString(3, legalCustomer.getEconomicCode());
             preparedStatement2.setInt(4, resultSet.getInt("id"));
-            preparedStatement2.executeQuery();
+            preparedStatement2.executeUpdate();
             connection.close();
         } catch (SQLException e) {
             throw new SqlException("Error at legal customer save Exception", e);
@@ -47,7 +47,7 @@ public class DatabaseManager {
         try {
             Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
             Statement sqlStatement = connection.createStatement();
-            ResultSet resultSet = sqlStatement.executeQuery("SELECT *  FROM customer where  id=(select max(id) from customer)");
+            ResultSet resultSet = sqlStatement.executeQuery("SELECT *  FROM customer WHERE  id=(select max(id) from customer)");
             if (!resultSet.next()) {
                 return null;
             }
@@ -92,26 +92,30 @@ public class DatabaseManager {
 
     public List<LegalCustomer> searchLegalCustomer(LegalCustomer legalCustomer) {
         List<LegalCustomer> legalCustomers = new ArrayList<LegalCustomer>();
-
         try {
             Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM legalcustomer INNER JOIN customer ON  legalcustomer.id=customer.id\n" + " WHERE 1=1" +
-                    (legalCustomer.getCompanyName().length() > 0 ? " AND companyName = ?" : "") +
-                    (legalCustomer.getEconomicCode().length() > 0 ? " AND economicCode= ?" : "") +
-                    (legalCustomer.getCustomerNumber().length() > 0 ? "AND customerNumber ?" : ""));
-            int index = 1;
-            if (legalCustomer.getCompanyName().length() > 0) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM legalcustomer inner join customer on legalcustomer.id=customer.id\n" +
+                    " WHERE 1=1 " +
+                    (legalCustomer.getCompanyName().length()>0 ? " AND companyName = ?" : "") +// meghdar gereft
+                    (legalCustomer.getEconomicCode().length()>0 ? " AND economicCode = ?" : "") +
+                    (legalCustomer.getCustomerNumber().length()>0? "AND customerNumber = ?" : ""));
+            int index=1;
+            if (legalCustomer.getCompanyName().length()>0) {
                 preparedStatement.setString(index, legalCustomer.getCompanyName());
                 index++;
             }
-            if (legalCustomer.getEconomicCode().length() > 0) {
+
+            if (legalCustomer.getEconomicCode().length()>0) {
                 preparedStatement.setString(index, legalCustomer.getEconomicCode());
                 index++;
             }
-            if (legalCustomer.getCustomerNumber().length() > 0) {
+            if (legalCustomer.getCustomerNumber().length()>0) {
                 preparedStatement.setString(index, legalCustomer.getCustomerNumber());
+                index++;
             }
             ResultSet resultSet = preparedStatement.executeQuery();
+
+
             while (resultSet.next()) {
                 LegalCustomer legalCustomer1 = new LegalCustomer();
                 legalCustomer1.setCompanyName(resultSet.getString("companyName"));
@@ -121,9 +125,55 @@ public class DatabaseManager {
                 legalCustomer1.setId(resultSet.getInt("id"));
                 legalCustomers.add(legalCustomer1);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return legalCustomers;
+    }
+
+    public List<RealCustomer> searchRealCustomer(RealCustomer realCustomer) {
+        List<RealCustomer> realCustomers = new ArrayList<RealCustomer>();
+        try {
+            Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM realcustomer inner join customer on realcustomer.id=customer.id\n" +
+                    " WHERE 1=1 " +
+                    (realCustomer.getFirstName().length()>0 ? " AND firstName = ?" : "") +// meghdar gereft
+                    (realCustomer.getLastName().length()>0 ? " AND lastName = ?" : "") +
+                    (realCustomer.getNationalCode().length()>0 ? " AND nationalCode = ?" : "") +
+                    (realCustomer.getCustomerNumber().length()>0? "AND customerNumber = ?" : ""));
+            int index = 1;
+            if (realCustomer.getFirstName().length() > 0) {
+                preparedStatement.setString(index, realCustomer.getFirstName());
+                index++;
+            }
+            if (realCustomer.getLastName().length() > 0) {
+                preparedStatement.setString(index, realCustomer.getLastName());
+                index++;
+            }
+            if (realCustomer.getNationalCode().length() > 0) {
+                preparedStatement.setString(index, realCustomer.getNationalCode());
+                index++;
+            }
+            if (realCustomer.getCustomerNumber().length() > 0) {
+                preparedStatement.setString(index, realCustomer.getCustomerNumber());
+            }
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                RealCustomer realCustomer1 = new RealCustomer();
+                realCustomer1.setFirstName(resultSet.getString("firstName"));
+                realCustomer1.setLastName(resultSet.getString("lastName"));
+                realCustomer1.setFatherName(resultSet.getString("fatherName"));
+                realCustomer1.setBirthDay(resultSet.getString("birthDate"));
+                realCustomer1.setNationalCode(resultSet.getNString("nationalCode"));
+                realCustomer1.setId(resultSet.getInt("id"));
+                realCustomer1.setCustomerNumber(resultSet.getString("customerNumber"));
+                realCustomers.add(realCustomer1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return realCustomers;
     }
 }

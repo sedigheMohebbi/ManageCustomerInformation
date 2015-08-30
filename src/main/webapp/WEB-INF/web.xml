@@ -6,6 +6,11 @@
     </servlet>
     <servlet>
 
+        <servlet-name>SearchAndShowCustomers</servlet-name>
+        <servlet-class>SearchAndShowCustomers</servlet-class>
+    </servlet>
+    <servlet>
+
         <servlet-name>SearchCustomer</servlet-name>
         <servlet-class>SearchCustomer</servlet-class>
     </servlet>
@@ -13,12 +18,6 @@
 
         <servlet-name>SaveAndShowCustomer</servlet-name>
         <servlet-class>SaveAndShowCustomer</servlet-class>
-    </servlet>
-
-    <servlet>
-
-        <servlet-name>SearchAndShowCustomers</servlet-name>
-        <servlet-class>SearchAndShowCustomers</servlet-class>
     </servlet>
     <servlet>
 
@@ -39,18 +38,8 @@
     </servlet-mapping>
     <servlet-mapping>
 
-        <servlet-name>AddCustomer</servlet-name>
-        <url-pattern>/AddCustomer</url-pattern>
-
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SaveAndShowCustomer</servlet-name>
-        <url-pattern>/SaveAndShowCustomer</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-
-        <servlet-name>Manage</servlet-name>
-        <url-pattern>/ManageCustomer</url-pattern>
+        <servlet-name>SearchAndShowCustomers</servlet-name>
+        <url-pattern>/SearchAndShowCustomers</url-pattern>
 
     </servlet-mapping>
     <servlet-mapping>
@@ -60,10 +49,19 @@
 
     </servlet-mapping>
     <servlet-mapping>
-
-        <servlet-name>SearchAndShowCustomers</servlet-name>
-        <url-pattern>/SearchAndShowCustomers</url-pattern>
-
+        <servlet-name>SaveAndShowCustomer</servlet-name>
+        <url-pattern>/SaveAndShowCustomer</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+
+        <servlet-name>AddCustomer</servlet-name>
+        <url-pattern>/AddCustomer</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Manage</servlet-name>
+        <url-pattern>/ManageCustomer</url-pattern>
+    </servlet-mapping>
+
 </web-app>
 

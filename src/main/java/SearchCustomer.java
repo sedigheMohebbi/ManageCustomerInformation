@@ -14,7 +14,7 @@ public class SearchCustomer extends HttpServlet {
         if (customerType == null) {
             out.println("<p> select customer Type</p>");
         } else if ("real".equals(customerType)) {
-          //  realCustomerPage(request, out);
+            realCustomerSearchPage(request, out);
         } else if ("legal".equals(customerType)) {
             legalCustomerSearchPage(request, out);
         } else {
@@ -22,6 +22,41 @@ public class SearchCustomer extends HttpServlet {
         }
 
     }
+
+    private void realCustomerSearchPage(HttpServletRequest request, PrintWriter out) {
+        out.println("<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head lang=\"en\">\n" +
+                "    <meta charset=\"UTF-8\">\n" +
+                "    <title>Customer Manager</title>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "\n" +
+                "<div>\n" +
+                "    <div><h1> search information</h1></div>\n" +
+                "\n" +
+                "    <div>\n" +
+                "        <form method=\"get\" action=\"http://localhost:9090/SearchAndShowCustomers\">\n" +
+                "            <fieldset>\n" +
+                "                <label for=\"firstName\">First Name </label>\n" +
+                "                <input type=\"text\" name=\"firsName\" value=\"\" id=\"firstName\"/>\n" +
+                "                <label for=\"lastName\">Last Name</label>\n" +
+                "                <input type=\"text\" name=\"lastName\" value=\"\" id=\"lastName\"/>\n" +
+                "                <label for=\"nationalCode\">National Code</label>\n" +
+                "                <input type=\"text\" name=\"nationalCode\" value=\"\" id=\"nationalCode\"/>\n" +
+                "                <label for=\"customerNumber\">Customer Number</label>\n" +
+                "                <input type=\"text\" name=\"customerNumber\" value=\"\" id=\"customerNumber\"/>\n" +
+                "                <input type=\"hidden\" name=\"customerType\" value=\"legal\"/>" +
+
+                "            </fieldset>\n" +
+                "            <input type=\"submit\" value=\"search\"/>\n" +
+                "        </form>\n" +
+                "    </div>\n" +
+                "</div>\n" +
+                "</body>\n" +
+                "</html>");
+    }
+
     private void legalCustomerSearchPage(HttpServletRequest request, PrintWriter out) {
         out.println("<!DOCTYPE html>\n" +
                 "<html>\n" +
