@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collections;
 import java.util.List;
 
 public class SearchAndShowCustomers extends HttpServlet {
@@ -37,23 +36,24 @@ public class SearchAndShowCustomers extends HttpServlet {
                 "                <td> customer Number--</td>\n" +
                 "                <td> registration date</td>\n" +
                 "            </tr>\n" );
-        for(int i=0;i<legalCustomers.size();i++){
-        out.println(
-                "            <tr>\n" +
-                "                <td>"+legalCustomers.get(i).getCompanyName()+"</td>\n" +
-                "                <td>"+legalCustomers.get(i).getEconomicCode()+"</td>\n" +
-                "                <td>"+legalCustomers.get(i).getCustomerNumber()+"</td>\n" +
-                "                <td>"+legalCustomers.get(i).getRegistrationDate()+"</td>\n" +
-                "            </tr>\n" +
-                "        </table>\n" +
-                "        <div>\n" +
-                "            <a href=\"/ParameterReader\">back</a>\n" +
-                "        </div>\n" +
-                "\n" +
-                "    </div>\n" +
-                "</div>\n" +
-                "</body>\n" +
-                "</html>");
+        for (LegalCustomer legalCustomer : legalCustomers) {
+            out.println(
+                    "            <tr>\n" +
+                            "                <td>" + legalCustomer.getCompanyName() + "</td>\n" +
+                            "                <td>" + legalCustomer.getEconomicCode() + "</td>\n" +
+                            "                <td>" + legalCustomer.getCustomerNumber() + "</td>\n" +
+                            "                <td>" + legalCustomer.getRegistrationDate() + "</td>\n" +
+                            "            </tr>\n" +
+                            "        </table>\n" +
+                            "        <div>\n" +
+                            "            <a href=\"/ParameterReader\">back</a>\n" +
+                            "        </div>\n" +
+                            "\n" +
+                            "    </div>\n" +
+                            "</div>\n" +
+                            "</body>\n" +
+                            "</html>");
 
-    }}
+        }
+    }
 }
