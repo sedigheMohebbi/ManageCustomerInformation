@@ -35,14 +35,14 @@ public class SearchCustomer extends HttpServlet {
                 "    <div><h1> customer manager</h1></div>\n" +
                 "\n" +
                 "    <div>\n" +
-                "        <form method=\"get\" action=\"http://localhost:9090/SearchAndShowCustomer\">\n" +
+                "        <form method=\"get\" action=\"http://localhost:9090/SearchAndShowCustomers\">\n" +
                 "            <fieldset>\n" +
                 "                <label for=\"companyName\">Company Name: </label>\n" +
                 "                <input type=\"text\" name=\"companyName\" value=\"\" id=\"companyName\"/>\n" +
-                "                <label for=\"registrationDate\"> Registration Date: </label>\n" +
-                "                <input type=\"text\" name=\"registrationDate\" value=\"\" id=\"registrationDate\"/>\n" +
-                "                <label for=\"economicCode\"> economic Code : </label>\n" +
+                "                <label for=\"economicCode\"> economic Code: </label>\n" +
                 "                <input type=\"text\" name=\"economicCode\" value=\"\" id=\"economicCode\"/>\n" +
+                "                <label for=\"customerNumber\"> customerNumber  : </label>\n" +
+                "                <input type=\"text\" name=\"customerNumber\" value=\"\" id=\"customerNumber\"/>\n" +
                 "                <input type=\"hidden\" name=\"customerType\" value=\"legal\"/>" +
                 "            </fieldset>\n" +
                 "            <input type=\"submit\" value=\"search\"/>\n" +
