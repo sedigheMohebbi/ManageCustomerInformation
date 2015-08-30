@@ -39,7 +39,7 @@ public class SearchCustomer extends HttpServlet {
                 "        <form method=\"get\" action=\"http://localhost:9090/SearchAndShowCustomers\">\n" +
                 "            <fieldset>\n" +
                 "                <label for=\"firstName\">First Name </label>\n" +
-                "                <input type=\"text\" name=\"firsName\" value=\"\" id=\"firstName\"/>\n" +
+                "                <input type=\"text\" name=\"firstName\" value=\"\" id=\"firstName\"/>\n" +
                 "                <label for=\"lastName\">Last Name</label>\n" +
                 "                <input type=\"text\" name=\"lastName\" value=\"\" id=\"lastName\"/>\n" +
                 "                <label for=\"nationalCode\">National Code</label>\n" +
