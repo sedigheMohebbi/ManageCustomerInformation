@@ -67,7 +67,7 @@ public class SaveAndShowCustomer extends HttpServlet {
                 "\n" +
                 "        </fieldset>\n" +
                 "       <div>\n" +
-                "           <a href=\"http://localhost:9090/ParameterReader\">back</a>\n" +
+                "           <a href=\"/ParameterReader\">back</a>\n" +
                 "       </div>\n" +
                 "\n" +
                 "    </div>\n" +

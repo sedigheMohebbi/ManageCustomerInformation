@@ -2,7 +2,6 @@ import exception.SqlException;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class DatabaseManager {
@@ -214,7 +213,7 @@ public class DatabaseManager {
             }
             return true;
         } catch (SQLException e) {
-           throw new SqlException("Exception",e);
+            throw new SqlException("Exception", e);
         }
     }
 
@@ -233,4 +232,20 @@ public class DatabaseManager {
             throw new SqlException("EXCEPTION", e);
         }
     }
+
+//    public LegalCustomer updateLegalCustomer(LegalCustomer legalCustomer) throws SqlException {
+//        try {
+//            Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
+//            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE legalcustomer SET companyName=? ,registrationDate=?,economicCode=? WHERE id=?,");
+//            preparedStatement.setString(1,legalCustomer.getCompanyName());
+//            preparedStatement.setString(2,legalCustomer.getRegistrationDate());
+//            preparedStatement.setString(3,legalCustomer.getEconomicCode());
+//            preparedStatement.setInt(4,legalCustomer.getId());
+//            preparedStatement.executeUpdate();
+//
+//        } catch (SQLException e) {
+//            throw new SqlException("EXCEPTION", e);
+//        }
+//
+//    }
 }
