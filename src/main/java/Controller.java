@@ -1,15 +1,16 @@
 import exception.SqlException;
+import exception.ValidationException;
 
 import java.util.List;
 
 public class Controller {
-    public LegalCustomer createAndSaveLegalCustomer(String name, String date, String economicCode) throws SqlException {
+    public LegalCustomer createAndSaveLegalCustomer(String name, String date, String economicCode) throws SqlException, ValidationException {
         LegalCustomer legalCustomer = new LegalCustomer();
         legalCustomer.setCompanyName(name);
         legalCustomer.setEconomicCode(economicCode);
         legalCustomer.setRegistrationDate(date);
         legalCustomer.setCustomerNumber(generateCustomerNumber());
-        //todo validate
+        validateLegalCustomer(legalCustomer, true);
         DatabaseManager databaseManager = new DatabaseManager();
         return databaseManager.saveLegalCustomer(legalCustomer);
     }
@@ -29,7 +30,7 @@ public class Controller {
         }
     }
 
-    public RealCustomer createAndSaveRealCustomer(String firstName, String lastName, String nationalCode, String birthDay, String fatherName) throws SqlException {
+    public RealCustomer createAndSaveRealCustomer(String firstName, String lastName, String nationalCode, String birthDay, String fatherName) throws SqlException, ValidationException {
         RealCustomer realCustomer = new RealCustomer();
         realCustomer.setFirstName(firstName);
         realCustomer.setLastName(lastName);
@@ -37,6 +38,7 @@ public class Controller {
         realCustomer.setNationalCode(nationalCode);
         realCustomer.setBirthDay(birthDay);
         realCustomer.setCustomerNumber(generateCustomerNumber());
+        validateRealCustomer(realCustomer, true);
         DatabaseManager databaseManager = new DatabaseManager();
         return databaseManager.saveRealCustomer(realCustomer);
 
@@ -61,4 +63,77 @@ public class Controller {
         return databaseManager.searchRealCustomer(realCustomer);
     }
 
+    public void validateLegalCustomer(LegalCustomer legalCustomer, boolean add) throws ValidationException, SqlException {
+        DatabaseManager databaseManager = new DatabaseManager();
+
+        if (legalCustomer.getCompanyName() == null || legalCustomer.getCompanyName().length() == 0) {
+            throw new ValidationException("company name has no value");
+        }
+        if (legalCustomer.getRegistrationDate() == null || legalCustomer.getRegistrationDate().length() == 0) {
+            throw new ValidationException("Registration Date has no value");
+        }
+        if (legalCustomer.getEconomicCode() == null || legalCustomer.getRegistrationDate().length() == 0) {
+            throw new ValidationException("Registration Date has no value");
+        }
+        boolean economicExists;
+        if (add) {
+            economicExists = databaseManager.existsLegalCustomerWithEconomicCode(legalCustomer.getEconomicCode());
+        } else {
+            economicExists = databaseManager.existsLegalEconomicCode(legalCustomer.getEconomicCode(), legalCustomer.getId());
+        }
+        if (economicExists) {
+            throw new ValidationException("Economic code exists");
+        }
+        if (!legalCustomer.getEconomicCode().matches("[0-9]{5}")) {
+            throw new ValidationException("economic code is invalid");
+        }
+        if (!legalCustomer.getRegistrationDate().matches("[1-9][0-9]{3}/[0-1][0-9]/[0-3][0-9]")) {
+            throw new ValidationException("Registration date is invalid");
+        }
+    }
+
+    public void validateRealCustomer(RealCustomer realCustomer, boolean add) throws ValidationException, SqlException {
+        DatabaseManager databaseManager = new DatabaseManager();
+        if (realCustomer.getFirstName() == null || realCustomer.getFirstName().length() == 0) {
+            throw new ValidationException("first name has no value");
+        }
+        if (!realCustomer.getFirstName().matches("[a-zA-Z]*")) {
+            throw new ValidationException("first name is invalid");
+        }
+        if (realCustomer.getLastName() == null || realCustomer.getLastName().length() == 0) {
+            throw new ValidationException("last name has no value");
+        }
+        if (!realCustomer.getLastName().matches("[a-zA-Z]*")) {
+            throw new ValidationException("last Name is invalid");
+        }
+        if (realCustomer.getFatherName() == null || realCustomer.getFatherName().length() == 0) {
+            throw new ValidationException("father name has no value");
+        }
+        if (!realCustomer.getFatherName().matches("[a-zA-Z]*")) {
+            throw new ValidationException("father Name is invalid");
+        }
+        if (realCustomer.getBirthDay() == null || realCustomer.getBirthDay().length() == 0) {
+            throw new ValidationException("Birth day has no value");
+        }
+        if (!realCustomer.getBirthDay().matches("[1-9][0-9]{3}/[0-1][0-9]/[0-3][0-9]")) {
+            throw new ValidationException("Birth day is invalid");
+        }
+        if (realCustomer.getNationalCode() == null || realCustomer.getNationalCode().length() == 0) {
+            throw new ValidationException("nation code is has no value");
+        }
+        if (!realCustomer.getNationalCode().matches("[0-9]{5}")) {
+            throw new ValidationException("nation code is invalid");
+        }
+        boolean ExistsNationalCode;
+        if (add) {
+            ExistsNationalCode = databaseManager.existRealCustomerWithNationalCode(realCustomer.getNationalCode());
+        } else {
+            ExistsNationalCode = databaseManager.existsRealCustomerNationalCode(realCustomer.getNationalCode(), realCustomer.getId());
+        }
+        if (ExistsNationalCode) {
+            throw new ValidationException("national code exists");
+        }
+
+
+    }
 }

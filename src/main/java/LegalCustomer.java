@@ -11,7 +11,7 @@ public class LegalCustomer extends Customer {
     }
 
     public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+        this.companyName = companyName.trim();
     }
 
     public String getCustomerNumber() {
@@ -19,7 +19,7 @@ public class LegalCustomer extends Customer {
     }
 
     public void setCustomerNumber(String customerNumber) {
-        this.customerNumber = customerNumber;
+        this.customerNumber = customerNumber.trim();
     }
 
     public String getRegistrationDate() {
@@ -27,7 +27,7 @@ public class LegalCustomer extends Customer {
     }
 
     public void setRegistrationDate(String registrationDate) {
-        this.registrationDate = registrationDate;
+        this.registrationDate = registrationDate.trim();
     }
 
     public String getEconomicCode() {

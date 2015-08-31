@@ -1,3 +1,5 @@
+import exception.SqlException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,16 +11,17 @@ import java.util.List;
 public class SearchAndShowCustomers extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        Controller controller = new Controller();
-        if ("legal".equals(request.getParameter("customerType"))) {
-            List<LegalCustomer> legalCustomers = controller.searchLegalCustomer(request.getParameter("companyName"), request.getParameter("economicCode"), request.getParameter("customerNumber"));
-            showSearchLegalCustomer(request, out, legalCustomers);
-        }
-        if("real".equals(request.getParameter("customerType"))){
-            List<RealCustomer> realCustomers=controller.searchRealCustomer(request.getParameter("firstName"),request.getParameter("lastName"),request.getParameter("nationalCode"),request.getParameter("customerNumber"));
-            showSearchRealCustomer(request,out,realCustomers);
-        }
+
+            PrintWriter out = response.getWriter();
+            Controller controller = new Controller();
+            if ("legal".equals(request.getParameter("customerType"))) {
+                List<LegalCustomer> legalCustomers = controller.searchLegalCustomer(request.getParameter("companyName"), request.getParameter("economicCode"), request.getParameter("customerNumber"));
+                showSearchLegalCustomer(request, out, legalCustomers);
+            }
+            if ("real".equals(request.getParameter("customerType"))) {
+                List<RealCustomer> realCustomers = controller.searchRealCustomer(request.getParameter("firstName"), request.getParameter("lastName"), request.getParameter("nationalCode"), request.getParameter("customerNumber"));
+                showSearchRealCustomer(request, out, realCustomers);
+            }
 
     }
 

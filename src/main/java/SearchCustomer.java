@@ -36,7 +36,7 @@ public class SearchCustomer extends HttpServlet {
                 "    <div><h1> search information</h1></div>\n" +
                 "\n" +
                 "    <div>\n" +
-                "        <form method=\"get\" action=\"http://localhost:9090/SearchAndShowCustomers\">\n" +
+                "        <form method=\"get\" action=\"/SearchAndShowCustomers\">\n" +
                 "            <fieldset>\n" +
                 "                <label for=\"firstName\">First Name </label>\n" +
                 "                <input type=\"text\" name=\"firstName\" value=\"\" id=\"firstName\"/>\n" +
@@ -46,7 +46,7 @@ public class SearchCustomer extends HttpServlet {
                 "                <input type=\"text\" name=\"nationalCode\" value=\"\" id=\"nationalCode\"/>\n" +
                 "                <label for=\"customerNumber\">Customer Number</label>\n" +
                 "                <input type=\"text\" name=\"customerNumber\" value=\"\" id=\"customerNumber\"/>\n" +
-                "                <input type=\"hidden\" name=\"customerType\" value=\"legal\"/>" +
+                "                <input type=\"hidden\" name=\"customerType\" value=\"real\"/>" +
 
                 "            </fieldset>\n" +
                 "            <input type=\"submit\" value=\"search\"/>\n" +

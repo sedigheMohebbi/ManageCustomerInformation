@@ -96,22 +96,22 @@ public class DatabaseManager {
             Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM legalcustomer inner join customer on legalcustomer.id=customer.id\n" +
                     " WHERE 1=1 " +
-                    (legalCustomer.getCompanyName().length()>0 ? " AND companyName = ?" : "") +// meghdar gereft
-                    (legalCustomer.getEconomicCode().length()>0 ? " AND economicCode = ?" : "") +
-                    (legalCustomer.getCustomerNumber().length()>0? "AND customerNumber = ?" : ""));
-            int index=1;
-            if (legalCustomer.getCompanyName().length()>0) {
+                    (legalCustomer.getCompanyName().length() > 0 ? " AND companyName = ?" : "") +// meghdar gereft
+                    (legalCustomer.getEconomicCode().length() > 0 ? " AND economicCode = ?" : "") +
+                    (legalCustomer.getCustomerNumber().length() > 0 ? "AND customerNumber = ?" : ""));
+            int index = 1;
+            if (legalCustomer.getCompanyName().length() > 0) {
                 preparedStatement.setString(index, legalCustomer.getCompanyName());
                 index++;
             }
 
-            if (legalCustomer.getEconomicCode().length()>0) {
+            if (legalCustomer.getEconomicCode().length() > 0) {
                 preparedStatement.setString(index, legalCustomer.getEconomicCode());
                 index++;
             }
-            if (legalCustomer.getCustomerNumber().length()>0) {
+            if (legalCustomer.getCustomerNumber().length() > 0) {
                 preparedStatement.setString(index, legalCustomer.getCustomerNumber());
-                index++;
+
             }
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -138,10 +138,10 @@ public class DatabaseManager {
             Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM realcustomer inner join customer on realcustomer.id=customer.id\n" +
                     " WHERE 1=1 " +
-                    (realCustomer.getFirstName().length()>0 ? " AND firstName = ?" : "") +// meghdar gereft
-                    (realCustomer.getLastName().length()>0 ? " AND lastName = ?" : "") +
-                    (realCustomer.getNationalCode().length()>0 ? " AND nationalCode = ?" : "") +
-                    (realCustomer.getCustomerNumber().length()>0? "AND customerNumber = ?" : ""));
+                    (realCustomer.getFirstName().length() > 0 ? " AND firstName = ?" : "") +// meghdar gereft
+                    (realCustomer.getLastName().length() > 0 ? " AND lastName = ?" : "") +
+                    (realCustomer.getNationalCode().length() > 0 ? " AND nationalCode = ?" : "") +
+                    (realCustomer.getCustomerNumber().length() > 0 ? "AND customerNumber = ?" : ""));
             int index = 1;
             if (realCustomer.getFirstName().length() > 0) {
                 preparedStatement.setString(index, realCustomer.getFirstName());
@@ -165,7 +165,7 @@ public class DatabaseManager {
                 realCustomer1.setLastName(resultSet.getString("lastName"));
                 realCustomer1.setFatherName(resultSet.getString("fatherName"));
                 realCustomer1.setBirthDay(resultSet.getString("birthDate"));
-                realCustomer1.setNationalCode(resultSet.getNString("nationalCode"));
+                realCustomer1.setNationalCode(resultSet.getString("nationalCode"));
                 realCustomer1.setId(resultSet.getInt("id"));
                 realCustomer1.setCustomerNumber(resultSet.getString("customerNumber"));
                 realCustomers.add(realCustomer1);
@@ -175,5 +175,62 @@ public class DatabaseManager {
             e.printStackTrace();
         }
         return realCustomers;
+    }
+
+    public boolean existsLegalCustomerWithEconomicCode(String economicCode) throws SqlException {
+        try {
+            Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT economicCode FROM legalcustomer WHERE economicCode=?");
+            preparedStatement.setString(1, economicCode);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+
+        } catch (SQLException e) {
+            throw new SqlException("Exception", e);
+        }
+    }
+
+    public boolean existRealCustomerWithNationalCode(String nationalCode) throws SqlException {
+        try {
+            Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT nationalCode FROM realcustomer WHERE nationalCode=?");
+            preparedStatement.setString(1, nationalCode);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            throw new SqlException("EXCEPTION", e);
+        }
+    }
+
+    public boolean existsRealCustomerNationalCode(String nationalCode, int id) throws SqlException {
+        try {
+            Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT nationalCode FROM realcustomer WHERE nationalCode=? AND id<>? ");
+            preparedStatement.setString(1, nationalCode);
+            preparedStatement.setInt(2, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (!resultSet.next()) {
+                return false;
+            }
+            return true;
+        } catch (SQLException e) {
+           throw new SqlException("Exception",e);
+        }
+    }
+
+    public boolean existsLegalEconomicCode(String economicCode, int id) throws SqlException {
+        try {
+            Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT economicCode FROM legalcustomer WHERE economicCode=? AND id<>?");
+            preparedStatement.setString(1, economicCode);
+            preparedStatement.setInt(2, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (!resultSet.next()) {
+                return false;
+            }
+            return true;
+        } catch (SQLException e) {
+            throw new SqlException("EXCEPTION", e);
+        }
     }
 }

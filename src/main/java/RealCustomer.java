@@ -11,7 +11,7 @@ public class RealCustomer extends Customer {
     }
 
     public void setNationalCode(String nationalCode) {
-        this.nationalCode = nationalCode;
+        this.nationalCode = nationalCode.trim();
     }
 
     public String getBirthDay() {
@@ -19,7 +19,7 @@ public class RealCustomer extends Customer {
     }
 
     public void setBirthDay(String birthDay) {
-        this.birthDay = birthDay;
+        this.birthDay = birthDay.trim();
     }
 
     public String getFatherName() {
@@ -27,7 +27,7 @@ public class RealCustomer extends Customer {
     }
 
     public void setFatherName(String fatherName) {
-        this.fatherName = fatherName;
+        this.fatherName = fatherName.trim();
     }
 
     public String getLastName() {
@@ -35,7 +35,7 @@ public class RealCustomer extends Customer {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastName = lastName.trim();
     }
 
     public String getFirstName() {
@@ -43,6 +43,6 @@ public class RealCustomer extends Customer {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstName = firstName.trim();
     }
 }
