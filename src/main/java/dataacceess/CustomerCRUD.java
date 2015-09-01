@@ -7,22 +7,12 @@ import java.sql.*;
 
 
 public class CustomerCRUD {
-    static final String CONNECTION_URL = "jdbc:mysql://localhost/customermanager";
-    static final String USER = "root";
-    static final String PASSWORD = "123456q@";
 
-    static {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
 
-        } catch (ClassNotFoundException e) {
-            System.err.println("mysql jdbc driver not found");
-        }
-    }
 
     public static Customer getLastCustomer() throws SqlException {
         try {
-            Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
+            Connection connection=SqlConnect.getInstance().conn;
             Statement sqlStatement = connection.createStatement();
             ResultSet resultSet = sqlStatement.executeQuery("SELECT *  FROM customer WHERE  id=(select max(id) from customer)");
             if (!resultSet.next()) {
@@ -31,7 +21,7 @@ public class CustomerCRUD {
             Customer customer = new Customer();
             customer.setCustomerNumber(resultSet.getString("customerNumber"));
             customer.setId(resultSet.getInt("id"));
-            connection.close();
+        //    connection.close();
             return customer;
 
 

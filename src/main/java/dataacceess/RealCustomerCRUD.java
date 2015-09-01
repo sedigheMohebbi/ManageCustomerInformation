@@ -20,7 +20,9 @@ public class RealCustomerCRUD {
         }
     public static RealCustomer saveRealCustomer(RealCustomer realCustomer) throws SqlException {
         try {
-            Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+          //  Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+            Connection connection=SqlConnect.getInstance().conn;
+
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO customer (customerNumber) VALUES (?)");
             preparedStatement.setString(1, realCustomer.getCustomerNumber());
             preparedStatement.executeUpdate();
@@ -37,7 +39,7 @@ public class RealCustomerCRUD {
             preparedStatement2.setInt(6, resultSet.getInt("id"));
             preparedStatement2.executeUpdate();
 
-            connection.close();
+            //connection.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -46,7 +48,9 @@ public class RealCustomerCRUD {
     }
     public static boolean existRealCustomerWithNationalCode(String nationalCode) throws SqlException {
         try {
-            Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+           // Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+            Connection connection=SqlConnect.getInstance().conn;
+
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT nationalCode FROM realcustomer WHERE nationalCode=?");
             preparedStatement.setString(1, nationalCode);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -58,7 +62,9 @@ public class RealCustomerCRUD {
 
     public static boolean existsRealCustomerNationalCode(String nationalCode, int id) throws SqlException {
         try {
-            Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+       //     Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+            Connection connection=SqlConnect.getInstance().conn;
+
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT nationalCode FROM realcustomer WHERE nationalCode=? AND id<>? ");
             preparedStatement.setString(1, nationalCode);
             preparedStatement.setInt(2, id);
@@ -74,7 +80,9 @@ public class RealCustomerCRUD {
     public static List<RealCustomer> searchRealCustomer(RealCustomer realCustomer) {
         List<RealCustomer> realCustomers = new ArrayList<RealCustomer>();
         try {
-            Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+           // Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+            Connection connection=SqlConnect.getInstance().conn;
+
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM realcustomer inner join customer on realcustomer.id=customer.id\n" +
                     " WHERE 1=1 " +
                     (realCustomer.getFirstName().length() > 0 ? " AND firstName = ?" : "") +// meghdar gereft

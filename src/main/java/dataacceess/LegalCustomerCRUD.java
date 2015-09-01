@@ -20,7 +20,8 @@ public class LegalCustomerCRUD {
 
     public static LegalCustomer saveLegalCustomer(LegalCustomer legalCustomer) throws SqlException {
         try {
-            Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+           // Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+            Connection connection=SqlConnect.getInstance().conn;
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO customer (customerNumber) VALUES (?)");
             preparedStatement.setString(1, legalCustomer.getCustomerNumber());
             preparedStatement.executeUpdate();
@@ -34,7 +35,7 @@ public class LegalCustomerCRUD {
             preparedStatement2.setString(3, legalCustomer.getEconomicCode());
             preparedStatement2.setInt(4, resultSet.getInt("id"));
             preparedStatement2.executeUpdate();
-            connection.close();
+          //  connection.close();
         } catch (SQLException e) {
             throw new SqlException("Error at legal customer save Exception", e);
         }
@@ -42,7 +43,8 @@ public class LegalCustomerCRUD {
     }
     public static boolean existsLegalCustomerWithEconomicCode(String economicCode) throws SqlException {
         try {
-            Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+           // Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+            Connection connection=SqlConnect.getInstance().conn;
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT economicCode FROM legalcustomer WHERE economicCode=?");
             preparedStatement.setString(1, economicCode);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -54,7 +56,9 @@ public class LegalCustomerCRUD {
     }
     public static boolean existsLegalEconomicCode(String economicCode, int id) throws SqlException {
         try {
-            Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+          //  Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+            Connection connection=SqlConnect.getInstance().conn;
+
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT economicCode FROM legalcustomer WHERE economicCode=? AND id<>?");
             preparedStatement.setString(1, economicCode);
             preparedStatement.setInt(2, id);
@@ -70,7 +74,9 @@ public class LegalCustomerCRUD {
     public  static List<LegalCustomer> searchLegalCustomer(LegalCustomer legalCustomer) {
         List<LegalCustomer> legalCustomers = new ArrayList<LegalCustomer>();
         try {
-            Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+            //Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
+            Connection connection=SqlConnect.getInstance().conn;
+
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM legalcustomer inner join customer on legalcustomer.id=customer.id\n" +
                     " WHERE 1=1 " +
                     (legalCustomer.getCompanyName().length() > 0 ? " AND companyName = ?" : "") +// meghdar gereft
