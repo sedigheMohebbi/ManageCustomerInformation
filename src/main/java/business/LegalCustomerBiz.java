@@ -62,6 +62,20 @@ public class LegalCustomerBiz {
         legalCustomer.setCustomerNumber(customerNumber);
         return LegalCustomerCRUD.searchLegalCustomer(legalCustomer);
     }
+    public LegalCustomer findLegalCustomer(int id) throws SqlException {
+        return  LegalCustomerCRUD.loadLegalCustomer(id);
 
+    }
+
+
+    public LegalCustomer updateLegal(String companyName, String economicCode, String registration, int id) throws  SqlException, ValidationException {
+        LegalCustomer legalCustomer = new LegalCustomer();
+        legalCustomer.setCompanyName(companyName);
+        legalCustomer.setEconomicCode(economicCode);
+        legalCustomer.setRegistrationDate(registration);
+        legalCustomer.setId(id);
+        validateLegalCustomer(legalCustomer,false);
+        return LegalCustomerCRUD.updateLegalCustomer(legalCustomer);
+    }
 
 }
