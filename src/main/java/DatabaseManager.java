@@ -134,6 +134,31 @@ public class DatabaseManager {
         return legalCustomers;
     }
 
+    public boolean existsLegalCustomerWithEconomicCode(String economicCode) throws SqlException {
+        try {
+            Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT economicCode FROM legalcustomer WHERE economicCode=?");
+            preparedStatement.setString(1, economicCode);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+
+        } catch (SQLException e) {
+            throw new SqlException("Exception", e);
+        }
+    }
+
+    public boolean existRealCustomerWithNationalCode(String nationalCode) throws SqlException {
+        try {
+            Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT nationalCode FROM realcustomer WHERE nationalCode=?");
+            preparedStatement.setString(1, nationalCode);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            throw new SqlException("EXCEPTION", e);
+        }
+    }
+
     public List<RealCustomer> searchRealCustomer(RealCustomer realCustomer) {
         List<RealCustomer> realCustomers = new ArrayList<RealCustomer>();
         try {
@@ -177,31 +202,6 @@ public class DatabaseManager {
             e.printStackTrace();
         }
         return realCustomers;
-    }
-
-    public boolean existsLegalCustomerWithEconomicCode(String economicCode) throws SqlException {
-        try {
-            Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT economicCode FROM legalcustomer WHERE economicCode=?");
-            preparedStatement.setString(1, economicCode);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            return resultSet.next();
-
-        } catch (SQLException e) {
-            throw new SqlException("Exception", e);
-        }
-    }
-
-    public boolean existRealCustomerWithNationalCode(String nationalCode) throws SqlException {
-        try {
-            Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT nationalCode FROM realcustomer WHERE nationalCode=?");
-            preparedStatement.setString(1, nationalCode);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            return resultSet.next();
-        } catch (SQLException e) {
-            throw new SqlException("EXCEPTION", e);
-        }
     }
 
     public boolean existsRealCustomerNationalCode(String nationalCode, int id) throws SqlException {
