@@ -28,7 +28,7 @@ public class SearchCustomer extends HttpServlet {
                 "<html>\n" +
                 "<head lang=\"en\">\n" +
                 "    <meta charset=\"UTF-8\">\n" +
-                "    <title>Customer Manager</title>\n" +
+                "    <title>model.Customer Manager</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +
@@ -44,7 +44,7 @@ public class SearchCustomer extends HttpServlet {
                 "                <input type=\"text\" name=\"lastName\" value=\"\" id=\"lastName\"/>\n" +
                 "                <label for=\"nationalCode\">National Code</label>\n" +
                 "                <input type=\"text\" name=\"nationalCode\" value=\"\" id=\"nationalCode\"/>\n" +
-                "                <label for=\"customerNumber\">Customer Number</label>\n" +
+                "                <label for=\"customerNumber\">model.Customer Number</label>\n" +
                 "                <input type=\"text\" name=\"customerNumber\" value=\"\" id=\"customerNumber\"/>\n" +
                 "                <input type=\"hidden\" name=\"customerType\" value=\"real\"/>" +
 
@@ -62,7 +62,7 @@ public class SearchCustomer extends HttpServlet {
                 "<html>\n" +
                 "<head lang=\"en\">\n" +
                 "    <meta charset=\"UTF-8\">\n" +
-                "    <title>Customer Manager</title>\n" +
+                "    <title>model.Customer Manager</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +

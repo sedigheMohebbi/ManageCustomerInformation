@@ -1,3 +1,5 @@
+package model;
+
 
 public class RealCustomer extends Customer {
     private String nationalCode;

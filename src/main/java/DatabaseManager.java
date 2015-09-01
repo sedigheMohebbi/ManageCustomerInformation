@@ -1,4 +1,7 @@
 import exception.SqlException;
+import model.Customer;
+import model.LegalCustomer;
+import model.RealCustomer;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -233,7 +236,7 @@ public class DatabaseManager {
         }
     }
 
-//    public LegalCustomer updateLegalCustomer(LegalCustomer legalCustomer) throws SqlException {
+//    public model.LegalCustomer updateLegalCustomer(model.LegalCustomer legalCustomer) throws SqlException {
 //        try {
 //            Connection connection = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
 //            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE legalcustomer SET companyName=? ,registrationDate=?,economicCode=? WHERE id=?,");
@@ -248,4 +251,5 @@ public class DatabaseManager {
 //        }
 //
 //    }
+
 }

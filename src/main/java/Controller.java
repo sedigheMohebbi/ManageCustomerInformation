@@ -1,5 +1,8 @@
 import exception.SqlException;
 import exception.ValidationException;
+import model.Customer;
+import model.LegalCustomer;
+import model.RealCustomer;
 
 import java.util.List;
 

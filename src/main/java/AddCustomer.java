@@ -29,7 +29,7 @@ public class AddCustomer extends HttpServlet {
                 "<html>\n" +
                 "<head lang=\"en\">\n" +
                 "    <meta charset=\"UTF-8\">\n" +
-                "    <title>Customer Manager</title>\n" +
+                "    <title>model.Customer Manager</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +
@@ -60,7 +60,7 @@ public class AddCustomer extends HttpServlet {
                 "<html>\n" +
                 "<head lang=\"en\">\n" +
                 "    <meta charset=\"UTF-8\">\n" +
-                "    <title>Customer Manager</title>\n" +
+                "    <title>model.Customer Manager</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +
@@ -68,7 +68,7 @@ public class AddCustomer extends HttpServlet {
                 "    <div><h1> customer manager</h1></div>\n" +
                 "\n" +
                 "    <div>\n" +
-                "        <form method=\"get\" action=\"http://localhost:9090/SaveAndShowCustomer\">\n" +
+                "        <form method=\"get\" action=\"/SaveAndShowCustomer\">\n" +
                 "            <fieldset>\n" +
                 "                <label for=\"firstName\">First Name: </label>\n" +
                 "                <input type=\"text\" name=\"firstName\" value=\"\" id=\"firstName\"/>\n" +

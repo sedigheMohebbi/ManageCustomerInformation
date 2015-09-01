@@ -13,7 +13,7 @@ public class ManageCustomer extends HttpServlet{
                 "<html>\n" +
                 "<head lang=\"en\">\n" +
                 "    <meta charset=\"UTF-8\">\n" +
-                "    <title>Customer Manager</title>\n" +
+                "    <title>model.Customer Manager</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +

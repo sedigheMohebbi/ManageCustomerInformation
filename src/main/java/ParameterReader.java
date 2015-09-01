@@ -35,9 +35,9 @@ public class ParameterReader extends HttpServlet {
                 " <form method=\"get\" action=\"http://localhost:9090/ManageCustomer\">\n" +
                         "            <fieldset>\n" +
                         "                <input type=\"radio\" name=\"customerType\" value=\"real\" id=\"realCustomerType\" checked/>\n" +
-                        "                <label for=\"realCustomerType\">Real Customer</label>\n" +
+                        "                <label for=\"realCustomerType\">Real model.Customer</label>\n" +
                         "                <input type=\"radio\" name=\"customerType\" value=\"legal\" id=\"legalCustomerType\"/>\n" +
-                        "                <label for=\"legalCustomerType\">Legal Customer </label>\n" +
+                        "                <label for=\"legalCustomerType\">Legal model.Customer </label>\n" +
                         "            </fieldset>\n" +
                         "            <input type=\"submit\" value=\"ok\"/>" +
                         "<input type=\"hidden\" name=\"submited\" value=\"true\"/>");

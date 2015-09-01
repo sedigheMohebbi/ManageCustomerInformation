@@ -1,5 +1,7 @@
 import exception.SqlException;
 import exception.ValidationException;
+import model.LegalCustomer;
+import model.RealCustomer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -46,7 +48,7 @@ public class SaveAndShowCustomer extends HttpServlet {
                 "<html>\n" +
                 "<head lang=\"en\">\n" +
                 "    <meta charset=\"UTF-8\">\n" +
-                "    <title>Customer Manager</title>\n" +
+                "    <title>model.Customer Manager</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +
@@ -81,7 +83,7 @@ public class SaveAndShowCustomer extends HttpServlet {
                 "<html>\n" +
                 "<head lang=\"en\">\n" +
                 "    <meta charset=\"UTF-8\">\n" +
-                "    <title>Customer Manager</title>\n" +
+                "    <title>model.Customer Manager</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +
@@ -121,7 +123,7 @@ public class SaveAndShowCustomer extends HttpServlet {
                 "<html>\n" +
                 "<head lang=\"en\">\n" +
                 "    <meta charset=\"UTF-8\">\n" +
-                "    <title>Customer Manager</title>\n" +
+                "    <title>model.Customer Manager</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +

@@ -1,3 +1,6 @@
+package model;
+
+
 
 public class LegalCustomer extends Customer {
     private String companyName;
