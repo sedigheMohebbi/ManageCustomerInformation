@@ -2,9 +2,11 @@ package business;
 
 import business.util.CustomerUtil;
 import dataacceess.CustomerCRUD;
+import dataacceess.LegalCustomerCRUD;
 import dataacceess.RealCustomerCRUD;
 import exception.SqlException;
 import exception.ValidationException;
+import model.LegalCustomer;
 import model.RealCustomer;
 
 import java.util.List;
@@ -82,5 +84,21 @@ public class RealCustomerBiz {
         realCustomer.setNationalCode(nationalCode);
         realCustomer.setCustomerNumber(customerNumber);
         return RealCustomerCRUD.searchRealCustomer(realCustomer);
+    }
+    public RealCustomer findRealCustomer(int id) throws SqlException {
+        return  RealCustomerCRUD.loadRealCustomer(id);
+
+    }
+
+    public RealCustomer updateRealCustomer(String firsName,String  lastName,String  fatherName, String nationalCode, String birthDate, int id) throws  SqlException, ValidationException {
+       RealCustomer realCustomer=new RealCustomer();
+        realCustomer.setFirstName(firsName);
+        realCustomer.setLastName(lastName);
+        realCustomer.setFatherName(fatherName);
+        realCustomer.setNationalCode(nationalCode);
+        realCustomer.setBirthDay(birthDate);
+        realCustomer.setId(id);
+        validateRealCustomer(realCustomer,false);
+        return RealCustomerCRUD.updateRealCustomer(realCustomer);
     }
 }
