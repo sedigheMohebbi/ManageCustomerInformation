@@ -1,12 +1,9 @@
 package business;
 
 import business.util.CustomerUtil;
-import dataacceess.CustomerCRUD;
-import dataacceess.LegalCustomerCRUD;
 import dataacceess.RealCustomerCRUD;
 import exception.SqlException;
 import exception.ValidationException;
-import model.LegalCustomer;
 import model.RealCustomer;
 
 import java.util.List;
@@ -100,5 +97,8 @@ public class RealCustomerBiz {
         realCustomer.setId(id);
         validateRealCustomer(realCustomer,false);
         return RealCustomerCRUD.updateRealCustomer(realCustomer);
+    }
+    public void deleteRealCustomer(int id) throws SqlException {
+       RealCustomerCRUD.deleteRealCustomer(id);
     }
 }

@@ -77,5 +77,9 @@ public class LegalCustomerBiz {
         validateLegalCustomer(legalCustomer,false);
         return LegalCustomerCRUD.updateLegalCustomer(legalCustomer);
     }
+    public void deleteLegalCustomer(int id) throws SqlException {
+        LegalCustomerCRUD.deleteLegalCustomer(id);
+    }
+
 
 }

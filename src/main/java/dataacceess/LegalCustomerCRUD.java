@@ -21,7 +21,7 @@ public class LegalCustomerCRUD {
     public static LegalCustomer saveLegalCustomer(LegalCustomer legalCustomer) throws SqlException {
         try {
             // Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
-            Connection connection = SqlConnect.getInstance().conn;
+            Connection connection = SqlConnect.getInstance().getConn();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO customer (customerNumber) VALUES (?)");
             preparedStatement.setString(1, legalCustomer.getCustomerNumber());
             preparedStatement.executeUpdate();
@@ -45,7 +45,7 @@ public class LegalCustomerCRUD {
     public static boolean existsLegalCustomerWithEconomicCode(String economicCode) throws SqlException {
         try {
             // Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
-            Connection connection = SqlConnect.getInstance().conn;
+            Connection connection = SqlConnect.getInstance().getConn();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT economicCode FROM legalcustomer WHERE economicCode=?");
             preparedStatement.setString(1, economicCode);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -59,7 +59,7 @@ public class LegalCustomerCRUD {
     public static boolean existsLegalEconomicCode(String economicCode, int id) throws SqlException {
         try {
             //  Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
-            Connection connection = SqlConnect.getInstance().conn;
+            Connection connection = SqlConnect.getInstance().getConn();
 
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT economicCode FROM legalcustomer WHERE economicCode=? AND id<>?");
             preparedStatement.setString(1, economicCode);
@@ -78,7 +78,7 @@ public class LegalCustomerCRUD {
         List<LegalCustomer> legalCustomers = new ArrayList<LegalCustomer>();
         try {
             //Connection connection = DriverManager.getConnection(CustomerCRUD.CONNECTION_URL, CustomerCRUD.USER, CustomerCRUD.PASSWORD);
-            Connection connection = SqlConnect.getInstance().conn;
+            Connection connection = SqlConnect.getInstance().getConn();
 
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM legalcustomer inner join customer on legalcustomer.id=customer.id\n" +
                     " WHERE 1=1 " +
@@ -121,7 +121,7 @@ public class LegalCustomerCRUD {
     public static LegalCustomer loadLegalCustomer(int id) throws SqlException {
         try {
 
-            Connection connection = SqlConnect.getInstance().conn;
+            Connection connection = SqlConnect.getInstance().getConn();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from customer INNER join legalcustomer on customer.id=legalcustomer.id WHERE legalcustomer.id=?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -146,7 +146,7 @@ public class LegalCustomerCRUD {
         try {
 
 
-            Connection connection = SqlConnect.getInstance().conn;
+            Connection connection = SqlConnect.getInstance().getConn();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE legalcustomer SET companyName=?,economicCode=?,registrationDate=? WHERE id=?");
             preparedStatement.setString(1, legalCustomer.getCompanyName());
             preparedStatement.setString(2, legalCustomer.getEconomicCode());
@@ -159,5 +159,20 @@ public class LegalCustomerCRUD {
             throw new SqlException("EXception", e);
         }
         return loadLegalCustomer(legalCustomer.getId());
+    }
+
+    public static void deleteLegalCustomer(int id) throws SqlException {
+        Connection connection = SqlConnect.getInstance().getConn();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM legalCustomer WHERE id=? ");
+            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
+            PreparedStatement preparedStatement1 = connection.prepareStatement("DELETE FROM customer WHERE id=?");
+            preparedStatement1.setInt(1,id);
+            preparedStatement1.executeUpdate();
+        } catch (SQLException e) {
+            throw new SqlException("SQL EXCEPTION in delete", e);
+        }
+
     }
 }

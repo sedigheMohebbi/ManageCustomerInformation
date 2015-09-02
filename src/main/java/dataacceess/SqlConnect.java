@@ -7,7 +7,11 @@ import java.sql.SQLException;
 
 
 public class SqlConnect {
-    public Connection conn;
+    private Connection conn;
+
+    public Connection getConn() {
+        return conn;
+    }
 
     private static SqlConnect ourInstance = new SqlConnect();
 

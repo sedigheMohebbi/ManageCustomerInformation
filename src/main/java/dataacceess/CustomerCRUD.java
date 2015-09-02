@@ -12,7 +12,7 @@ public class CustomerCRUD {
 
     public static Customer getLastCustomer() throws SqlException {
         try {
-            Connection connection=SqlConnect.getInstance().conn;
+            Connection connection=SqlConnect.getInstance().getConn();
             Statement sqlStatement = connection.createStatement();
             ResultSet resultSet = sqlStatement.executeQuery("SELECT *  FROM customer WHERE  id=(select max(id) from customer)");
             if (!resultSet.next()) {
