@@ -20,7 +20,7 @@ public class SqlConnect {
     }
 
     private SqlConnect() {
-        String CONNECTION_URL = "jdbc:mysql://localhost/customermanager";
+        String CONNECTION_URL = "jdbc:mysql://localhost/customermanager?useUnicode=true&characterEncoding=UTF-8";
         String USER = "root";
         String PASSWORD = "123456q@";
         try {

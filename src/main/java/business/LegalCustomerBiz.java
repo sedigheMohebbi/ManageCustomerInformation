@@ -6,6 +6,7 @@ import exception.SqlException;
 import exception.ValidationException;
 import model.LegalCustomer;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public class LegalCustomerBiz {
@@ -80,6 +81,5 @@ public class LegalCustomerBiz {
     public void deleteLegalCustomer(int id) throws SqlException {
         LegalCustomerCRUD.deleteLegalCustomer(id);
     }
-
 
 }
