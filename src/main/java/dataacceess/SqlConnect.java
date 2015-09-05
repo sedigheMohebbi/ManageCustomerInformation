@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
 public class SqlConnect {
     private Connection conn;
 
@@ -22,7 +21,7 @@ public class SqlConnect {
     private SqlConnect() {
         String CONNECTION_URL = "jdbc:mysql://localhost/customermanager?useUnicode=true&characterEncoding=UTF-8";
         String USER = "root";
-        String PASSWORD = "123456q@";
+        String PASSWORD = "asaasale";
         try {
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
@@ -32,6 +31,5 @@ public class SqlConnect {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

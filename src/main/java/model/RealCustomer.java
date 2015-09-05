@@ -3,7 +3,7 @@ package model;
 
 public class RealCustomer extends Customer {
     private String nationalCode;
-    private String birthDay;
+    private String birthDate;
     private String fatherName;
     private String lastName;
     private String firstName;
@@ -16,12 +16,12 @@ public class RealCustomer extends Customer {
         this.nationalCode = nationalCode.trim();
     }
 
-    public String getBirthDay() {
-        return birthDay;
+    public String getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthDay(String birthDay) {
-        this.birthDay = birthDay.trim();
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate.trim();
     }
 
     public String getFatherName() {

@@ -35,7 +35,7 @@ public class RealCustomerCRUD {
             preparedStatement2.setString(1, realCustomer.getFirstName());
             preparedStatement2.setString(2, realCustomer.getLastName());
             preparedStatement2.setString(3, realCustomer.getFatherName());
-            preparedStatement2.setString(4, realCustomer.getBirthDay());
+            preparedStatement2.setString(4, realCustomer.getBirthDate());
             preparedStatement2.setString(5, realCustomer.getNationalCode());
             preparedStatement2.setInt(6, resultSet.getInt("id"));
             preparedStatement2.executeUpdate();
@@ -113,7 +113,7 @@ public class RealCustomerCRUD {
                 realCustomer1.setFirstName(resultSet.getString("firstName"));
                 realCustomer1.setLastName(resultSet.getString("lastName"));
                 realCustomer1.setFatherName(resultSet.getString("fatherName"));
-                realCustomer1.setBirthDay(resultSet.getString("birthDate"));
+                realCustomer1.setBirthDate(resultSet.getString("birthDate"));
                 realCustomer1.setNationalCode(resultSet.getString("nationalCode"));
                 realCustomer1.setId(resultSet.getInt("id"));
                 realCustomer1.setCustomerNumber(resultSet.getString("customerNumber"));
@@ -128,7 +128,6 @@ public class RealCustomerCRUD {
 
     public static RealCustomer loadRealCustomer(int id) throws SqlException {
         try {
-
             Connection connection = SqlConnect.getInstance().getConn();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from customer INNER join realcustomer on customer.id=realcustomer.id WHERE realcustomer.id=?");
             preparedStatement.setInt(1, id);
@@ -139,52 +138,44 @@ public class RealCustomerCRUD {
             realCustomer.setLastName(resultSet.getString("lastName"));
             realCustomer.setFatherName(resultSet.getString("fatherName"));
             realCustomer.setNationalCode(resultSet.getString("nationalCode"));
-            realCustomer.setBirthDay(resultSet.getString("birthDate"));
+            realCustomer.setBirthDate(resultSet.getString("birthDate"));
             realCustomer.setId(resultSet.getInt("id"));
             realCustomer.setCustomerNumber(resultSet.getString("customerNumber"));
 
             return realCustomer;
-
-
         } catch (SQLException e) {
             throw new SqlException("SQL EXCEPTION", e);
         }
-
     }
+
     public static RealCustomer updateRealCustomer(RealCustomer realCustomer) throws SqlException {
         try {
-
-
             Connection connection = SqlConnect.getInstance().getConn();
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE realcustomer SET firstName=?,lastName=?,fatherName=?,nationalCode=?,birthDate=? WHERE id=?");
             preparedStatement.setString(1, realCustomer.getFirstName());
             preparedStatement.setString(2, realCustomer.getLastName());
             preparedStatement.setString(3, realCustomer.getFatherName());
             preparedStatement.setString(4, realCustomer.getNationalCode());
-            preparedStatement.setString(5, realCustomer.getBirthDay());
+            preparedStatement.setString(5, realCustomer.getBirthDate());
             preparedStatement.setInt(6, realCustomer.getId());
             preparedStatement.executeUpdate();
-
-
         } catch (SQLException e) {
             throw new SqlException("EXception", e);
         }
         return loadRealCustomer(realCustomer.getId());
     }
+
     public static void deleteRealCustomer(int id) throws SqlException {
         Connection connection = SqlConnect.getInstance().getConn();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM realcustomer WHERE id=? ");
-            preparedStatement.setInt(1,id);
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             PreparedStatement preparedStatement1 = connection.prepareStatement("DELETE FROM customer WHERE id=?");
-            preparedStatement1.setInt(1,id);
+            preparedStatement1.setInt(1, id);
             preparedStatement1.executeUpdate();
         } catch (SQLException e) {
             throw new SqlException("SQL EXCEPTION in delete", e);
         }
-
     }
-
-
 }
