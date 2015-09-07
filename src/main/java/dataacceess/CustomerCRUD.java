@@ -9,7 +9,6 @@ import java.sql.*;
 public class CustomerCRUD {
 
 
-
     public static Customer getLastCustomer() throws SqlException {
         try {
             Connection connection=SqlConnect.getInstance().getConn();
